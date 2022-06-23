@@ -10,6 +10,13 @@ import com.facebook.react.ReactRootView;
 import expo.modules.ReactActivityDelegateWrapper;
 
 public class MainActivity extends ReactActivity {
+
+  /* @Override  
+    protected String getMainComponentName() {  
+        return "naviExe";  
+    }  
+*/
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     // Set the theme to AppTheme BEFORE onCreate to support 
@@ -34,6 +41,16 @@ public class MainActivity extends ReactActivity {
       new ReactActivityDelegate(this, getMainComponentName())
     );
   }
+
+ /* @Override  
+protected ReactActivityDelegate createReactActivityDelegate() {  
+    return new ReactActivityDelegate(this, getMainComponentName()) {  
+        @Override  
+        protected ReactRootView createRootView() {  
+            return new RNGestureHandlerEnabledRootView(MainActivity.this);  
+        }  
+    };  
+}  */
 
   /**
    * Align the back button behavior with Android S
