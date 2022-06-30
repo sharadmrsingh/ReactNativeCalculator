@@ -4,6 +4,7 @@ import { Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import InputScreen from './Screens/InputScreen';
+import ResultScreen from './Screens/ResultScreen';
 
 
 
@@ -12,7 +13,7 @@ const { width, height } = Dimensions.get('window');
 
 
 
-//Header/App Bar Styling
+//Header/App Bar Styling.Here we are using shorthand of styles i.e Shorthand of Stylesheet.create({})
 const styles = {
   viewStyle: {
     backgroundColor: '#3333ff',
@@ -62,20 +63,28 @@ const LandingPage = (props) =>
 
           <Text style={{ fontSize: 20, marginTop: 20, fontWeight: 'bold' }}>React Native Calculator</Text>
 
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Input')} style={styles.button}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Input', {
+              paramKey: "+",
+            })} style={styles.button}>
             <Text style={styles.buttonText}>ADDITION</Text>
           </TouchableOpacity>
 
 
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Input')} style={styles.button}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Input', {
+              paramKey: "-",
+            })} style={styles.button}>
             <Text style={styles.buttonText}>SUBTRACTION</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Input')} style={styles.button}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Input', {
+              paramKey: "*",
+            })} style={styles.button}>
             <Text style={styles.buttonText}>MULTIPLICATION</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Input')} style={styles.button}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Input', {
+              paramKey: "/",
+            })} style={styles.button}>
             <Text style={styles.buttonText}>DIVISION</Text>
           </TouchableOpacity>
 
@@ -87,39 +96,45 @@ const LandingPage = (props) =>
 }
 
 
-function App() {
-  return (
-    <NavigationContainer initialRouteName="Landing" screenOptions={{
-      header:(props) => <CustomNavigationBar {...props} />,
-    }}>
-      <Stack.Navigator>
-        <Stack.Screen name="Landing" component={LandingPage} options={{ title: 'Calc',headerStyle: {
-            backgroundColor: '#3333ff',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-            }}/>
-        <Stack.Screen name="Input" component={InputScreen} options={{ title: 'Calc',headerStyle: {
-            backgroundColor: '#3333ff',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-            }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
 
-
-
-
-
-
-export default App;
+const  App = () => {
+    return (
+      <NavigationContainer initialRouteName="Landing" screenOptions={{
+        header:(props) => <CustomNavigationBar {...props} />,
+      }}>
+        <Stack.Navigator>
+          <Stack.Screen name="Landing" component={LandingPage} options={{ title: 'Calc',headerStyle: {
+              backgroundColor: '#3333ff',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+              }}/>
+          <Stack.Screen name="Input" component={InputScreen} options={{ title: 'Calc',headerStyle: {
+              backgroundColor: '#3333ff',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+              }}
+              />
+           <Stack.Screen name="Result" component={ResultScreen} options={{ title: 'Calc',headerStyle: {
+                backgroundColor: '#3333ff',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+                }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+  
+  
+  export default App;
 
 
 
